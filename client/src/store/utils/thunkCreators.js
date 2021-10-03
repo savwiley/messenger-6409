@@ -106,20 +106,6 @@ export const postMessage = (body) => (dispatch) => {
   } catch (error) {
     console.error(error);
   };
-/*
-    //const data = saveMessage(body);
-
-    if (!body.conversationId) {
-      dispatch(addConversation(body.recipientId, data.message));
-    } else {
-      dispatch(setNewMessage(data.message, body.sender));
-    }
-
-    sendMessage(data, body);
-  } catch (error) {
-    console.error(error);
-  }
-  */
 };
 
 export const searchUsers = (searchTerm) => async (dispatch) => {
