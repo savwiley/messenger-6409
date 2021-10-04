@@ -18,6 +18,7 @@ const Home = (props) => {
   const classes = useStyles();
   const { user, logout, fetchConversations } = props;
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     if (user.id) {
@@ -47,8 +48,8 @@ const Home = (props) => {
       </Button>
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
-        <SidebarContainer />
-        <ActiveChat />
+        <SidebarContainer newMessage={newMessage} />
+        <ActiveChat newChat={setNewMessage} />
       </Grid>
     </>
   );

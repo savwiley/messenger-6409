@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -23,8 +23,16 @@ const useStyles = makeStyles((theme) => ({
 const ChatContent = (props) => {
   const classes = useStyles();
 
-  const { conversation } = props;
+  const { conversation, newMessage } = props;
   const { latestMessageText, otherUser } = conversation;
+  const [correctConvo, setCorrectConvo] = useState(false);
+
+  useEffect(() => {
+    if (newMessage) {
+      //checks if message is in correct conversation
+      newMessage.conversationId === conversation.id ? setCorrectConvo(true) : setCorrectConvo(false);
+    }
+  }, [newMessage, conversation.id]);
 
   return (
     <Box className={classes.root}>
@@ -33,7 +41,7 @@ const ChatContent = (props) => {
           {otherUser.username}
         </Typography>
         <Typography className={classes.previewText}>
-          {latestMessageText}
+          {correctConvo ? newMessage.text : latestMessageText}
         </Typography>
       </Box>
     </Box>
