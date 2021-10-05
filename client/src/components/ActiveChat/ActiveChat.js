@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import { Input, Header, Messages } from "./index";
@@ -22,13 +22,8 @@ const useStyles = makeStyles(() => ({
 
 const ActiveChat = (props) => {
   const classes = useStyles();
-  const [newMessage, setNewMessage] = useState();
-  const { user, newChat } = props;
+  const { user } = props;
   const conversation = props.conversation || {};
-
-  useEffect(() => {
-    newMessage && newChat(newMessage);
-  }, [newMessage, newChat]);
   
   return (
     <Box className={classes.root}>
@@ -43,14 +38,11 @@ const ActiveChat = (props) => {
               messages={conversation.messages}
               otherUser={conversation.otherUser}
               userId={user.id}
-              conversationId={conversation.id}
-              newMessage={newMessage}
             />
             <Input
               otherUser={conversation.otherUser}
               conversationId={conversation.id}
               user={user}
-              newMessage={setNewMessage}
             />
           </Box>
         </>
