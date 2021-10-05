@@ -24,14 +24,14 @@ const Messages = (props) => {
 
   return (
     <Box>
-      {messages.slice(0).reverse().map((message) => (
-        <div key={message.id}>
+      {messages.map((message) => (
+        <Box key={message.id}>
           {message.senderId === userId ? (
             <SenderBubble text={message.text} time={makeTime(message)} />
           ) : (
             <OtherUserBubble text={message.text} time={makeTime(message)} otherUser={otherUser} />
           )}
-        </div>
+        </Box>
       ))}
       {correctConvo && <SenderBubble text={newMessage.text} time={makeTime(newMessage)} />}
     </Box>
