@@ -15,23 +15,44 @@ import {
 } from "@material-ui/core";
 import { register } from "./store/utils/thunkCreators";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    fontFamily: "'Open Sans', sans-serif",
-    width: "40%",
-    padding: "2% 10%",
-    alignSelf: "center",
+    justifyContent: "space-around",
+    height: "100vh",
+    padding: 0,
   },
   sideImage: {
-    display: "inline-flex",
-    flexDirection: "column",
-    height: "100vh",
-    width: "40%",
-    background: `linear-gradient(180deg, rgba(58, 141, 255, 0.85), rgba(134, 185, 255, 0.85)), center/cover no-repeat url(${backgroundImage})`,
-    color: '#FFF',
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
+    display: "none",
+    [theme.breakpoints.up('sm')]: {
+      display: "inline-flex",
+      flexDirection: "column",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      height: "100vh",
+      width: "36%",
+      padding: "0 2%",
+      background: `linear-gradient(180deg, rgba(58, 141, 255, 0.85), rgba(134, 185, 255, 0.85)), center/cover no-repeat url(${backgroundImage})`,
+      color: '#FFF',
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: "center",
+    },
+  },
+  sideInteract: {
+    fontFamily: "'Open Sans', sans-serif",
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    padding: "15% 10%",
+    alignSelf: "center",
+    [theme.breakpoints.up('sm')]: {
+      width: "40%",
+      left: "initial",
+      padding: "18vh 10%",
+    },
   },
   top: {
     width: "fit-content",
@@ -50,13 +71,17 @@ const useStyles = makeStyles(() => ({
     boxShadow: "0 0 8px rgba(0,0,0,0.1)",
     color: "#3A8DFF",
     fontFamily: "'Montserrat', sans-serif",
-    width: 200,
+    padding: "0 5vw",
     height: 50,
   },
   header: {
-    fontSize: 40,
+    fontSize: '5.5vh',
     fontWeight: 600,
     cursor: "default",
+    marginTop: 40,
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 0,
+    },
   },
   bottomButton: {
     display: "block",
@@ -65,7 +90,7 @@ const useStyles = makeStyles(() => ({
     boxShadow: "none",
     fontFamily: "'Montserrat', sans-serif",
     margin: "20px auto 0",
-    width: 200,
+    width: '30vw',
     height: 50,
     '&:hover': {
       background: "#6abaff",
@@ -99,15 +124,30 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container>
+    <Grid container className={classes.root}>
       <Grid className={classes.sideImage}>
-        <img src={bubbleIcon} alt="Chat Bubble" style={{ width: '15%', marginBottom: 40 }} />
-        <Typography style={{ fontSize: 30 }}>Converse with anyone<br />with any language</Typography>
+        <img
+          src={bubbleIcon}
+          alt="Chat Bubble"
+          style={{ width: "15%", marginBottom: 40 }}
+        />
+        <Typography style={{ fontSize: 30 }}>
+          Converse with anyone
+          <br />
+          with any language
+        </Typography>
       </Grid>
-      <Box className={classes.root}>
+      <Box className={classes.sideInteract}>
         <Grid container item className={classes.top}>
-          <Typography className={classes.topText}>Already have an account?</Typography>
-          <Button onClick={() => history.push("/login")} className={classes.topButton}>Login</Button>
+          <Typography className={classes.topText}>
+            Already have an account?
+          </Typography>
+          <Button
+            onClick={() => history.push("/login")}
+            className={classes.topButton}
+          >
+            Login
+          </Button>
         </Grid>
         <form onSubmit={handleRegister}>
           <Grid>
@@ -133,7 +173,12 @@ const Login = (props) => {
               </FormControl>
             </Grid>
             <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword} margin="normal" style={{ width: "100%" }} required>
+              <FormControl
+                error={!!formErrorMessage.confirmPassword}
+                margin="normal"
+                style={{ width: "100%" }}
+                required
+              >
                 <TextField
                   aria-label="password"
                   label="Password"
@@ -141,13 +186,16 @@ const Login = (props) => {
                   inputProps={{ minLength: 6 }}
                   name="password"
                 />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
+                <FormHelperText>{formErrorMessage.confirmPassword}</FormHelperText>
               </FormControl>
             </Grid>
             <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword} margin="normal" style={{ width: "100%" }} required>
+              <FormControl
+                error={!!formErrorMessage.confirmPassword}
+                margin="normal"
+                style={{ width: "100%" }}
+                required
+              >
                 <TextField
                   label="Confirm Password"
                   aria-label="confirm password"
@@ -155,12 +203,15 @@ const Login = (props) => {
                   inputProps={{ minLength: 6 }}
                   name="confirmPassword"
                 />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
+                <FormHelperText>{formErrorMessage.confirmPassword}</FormHelperText>
               </FormControl>
             </Grid>
-            <Button type="submit" variant="contained" size="large" className={classes.bottomButton}>
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              className={classes.bottomButton}
+            >
               Create
             </Button>
           </Grid>
