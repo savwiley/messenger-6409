@@ -7,14 +7,24 @@ export const theme = createMuiTheme({
     button: {
       textTransform: "none",
       letterSpacing: 0,
-      fontWeight: "bold"
+      fontWeight: "bold",
+      fontFamily: "'Montserrat', sans-serif",
     }
   },
   overrides: {
+    MuiFormLabel: {
+      root: {
+        color: "#B0B0B0",
+        marginTop: '-10px',
+        '&.Mui-focused': {
+          color: "#B0B0B0",
+        }
+      }
+    },
     MuiInput: {
       input: {
-        fontWeight: "bold"
-      }
+        fontWeight: "bold",
+      },
     }
   },
   palette: {
