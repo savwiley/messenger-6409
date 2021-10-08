@@ -3,7 +3,7 @@ import backgroundImage from "../images/bg-img.png";
 import bubbleIcon from "../images/bubble.svg";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
 
-export const useStyles = makeStyles((theme, paddingValue) => ({
+export const useStyles = makeStyles((theme) => ({
   root: {
     justifyContent: "space-around",
     height: "100vh",
@@ -33,55 +33,60 @@ export const useStyles = makeStyles((theme, paddingValue) => ({
     bottom: 0,
     right: 0,
     left: 0,
-    padding: "15% 10%",
+    padding: "20% 10%",
     alignSelf: "center",
     [theme.breakpoints.up('sm')]: {
       width: "40%",
       left: "initial",
-      padding: `${paddingValue}vh 10%`,
+      padding: "10%",
     },
   },
   top: {
     width: "fit-content",
     alignItems: "center",
     position: "absolute",
-    top: "2%",
-    right: "2%",
+    top: "4%",
+    right: "4%",
   },
   topText: {
-    fontSize: 12,
-    paddingRight: 20,
-    cursor: "default",
+    display: "none",
+    [theme.breakpoints.up('sm')]: {
+      display: "block",
+      fontSize: 15,
+      paddingRight: 20,
+      cursor: "default",
+    }
   },
   topButton: {
-    boxShadow: "0 0 8px rgba(0,0,0,0.1)",
+    boxShadow: "0 0 8px rgba(0,0,0,0.2)",
     color: "#3A8DFF",
-    padding: "0 5vw",
+    width: 150,
     height: 50,
   },
   header: {
-    fontSize: '5.5vh',
+    fontSize: '5vh',
     fontWeight: 600,
     cursor: "default",
-    marginTop: 40,
+    marginBottom: 10,
     [theme.breakpoints.up('sm')]: {
       marginTop: 0,
+      fontSize: '5.5vh',
     },
   },
-  inputs: {
+  formControl: {
     width: "100%",
-    margin: "5% 0",
-    '& label': {
-      fontSize: 20,
-    },
+    marginBottom: "5%"
+  },
+  adornment: {
+    color: "#3A8DFF",
   },
   bottomButton: {
     display: "block",
     color: "#FFF",
     boxShadow: "none",
     margin: "20px auto 0",
-    width: '30vw',
-    height: 50,
+    width: 150,
+    height: 55,
     '&:hover': {
       background: "#6abaff",
     }
@@ -95,9 +100,9 @@ export const SideImage = () => {
       <img
         src={bubbleIcon}
         alt="Chat Bubble"
-        style={{ width: "15%", marginBottom: 40 }}
+        style={{ width: "6vw", marginBottom: 50 }}
       />
-      <Typography style={{ fontSize: 30 }}>
+      <Typography style={{ fontSize: "3vw", cursor: "default" }}>
         Converse with anyone
         <br />
         with any language
