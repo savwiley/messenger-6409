@@ -9,11 +9,12 @@ import {
   Button,
   FormControl,
   TextField,
+  InputAdornment,
 } from "@material-ui/core";
 import { login } from "./store/utils/thunkCreators";
 
 const Login = (props) => {
-  const classes = useStyles(25);
+  const classes = useStyles();
   const history = useHistory();
   const { user, login } = props;
 
@@ -48,7 +49,7 @@ const Login = (props) => {
           <Grid>
             <Typography className={classes.header}>Welcome back!</Typography>
             <Grid>
-              <FormControl className={classes.inputs} required>
+              <FormControl margin="normal" className={classes.formControl} required>
                 <TextField
                   aria-label="e-mail address"
                   label="E-mail address"
@@ -57,12 +58,15 @@ const Login = (props) => {
                 />
               </FormControl>
             </Grid>
-            <FormControl className={classes.inputs} required>
+            <FormControl margin="normal" className={classes.formControl} required>
               <TextField
                 label="Password"
                 aria-label="password"
                 type="password"
                 name="password"
+                InputProps={{
+                  endAdornment: <InputAdornment position="end" className={classes.adornment}>Forgot?</InputAdornment>
+                }}
               />
             </FormControl>
             <Grid>
