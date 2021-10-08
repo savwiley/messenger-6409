@@ -25,7 +25,15 @@ export const useStyles = makeStyles((theme) => ({
       alignItems: "center",
       justifyContent: "center",
       textAlign: "center",
+      '& img': {
+        width: "6vw", 
+        marginBottom: 50
+      },
     },
+  },
+  sideText: {
+    cursor: "default",
+    fontSize: "3vw", 
   },
   sideInteract: {
     position: "absolute",
@@ -100,9 +108,8 @@ export const SideImage = () => {
       <img
         src={bubbleIcon}
         alt="Chat Bubble"
-        style={{ width: "6vw", marginBottom: 50 }}
       />
-      <Typography style={{ fontSize: "3vw", cursor: "default" }}>
+      <Typography className={classes.sideText}>
         Converse with anyone
         <br />
         with any language
