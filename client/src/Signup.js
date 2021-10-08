@@ -14,7 +14,7 @@ import {
 import { register } from "./store/utils/thunkCreators";
 
 const Login = (props) => {
-  const classes = useStyles(18);
+  const classes = useStyles();
   const history = useHistory();
   const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
@@ -57,7 +57,7 @@ const Login = (props) => {
           <Grid>
             <Typography className={classes.header}>Create an account.</Typography>
             <Grid>
-              <FormControl margin="normal" style={{ width: "100%" }} required>
+              <FormControl margin="normal" className={classes.formControl} required>
                 <TextField
                   aria-label="username"
                   label="Username"
@@ -67,7 +67,7 @@ const Login = (props) => {
               </FormControl>
             </Grid>
             <Grid>
-              <FormControl margin="normal" style={{ width: "100%" }} required>
+              <FormControl margin="normal" className={classes.formControl} required>
                 <TextField
                   label="E-mail address"
                   aria-label="e-mail address"
@@ -80,7 +80,7 @@ const Login = (props) => {
               <FormControl
                 error={!!formErrorMessage.confirmPassword}
                 margin="normal"
-                style={{ width: "100%" }}
+                className={classes.formControl}
                 required
               >
                 <TextField
