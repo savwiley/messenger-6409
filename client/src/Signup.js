@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { useStyles, SideImage } from "./themes/forms.js";
@@ -9,7 +9,6 @@ import {
   Button,
   FormControl,
   TextField,
-  FormHelperText,
 } from "@material-ui/core";
 import { register } from "./store/utils/thunkCreators";
 
@@ -17,19 +16,12 @@ const Login = (props) => {
   const classes = useStyles();
   const history = useHistory();
   const { user, register } = props;
-  const [formErrorMessage, setFormErrorMessage] = useState({});
 
   const handleRegister = async (event) => {
     event.preventDefault();
     const username = event.target.username.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    const confirmPassword = event.target.confirmPassword.value;
-
-    if (password !== confirmPassword) {
-      setFormErrorMessage({ confirmPassword: "Passwords must match" });
-      return;
-    }
 
     await register({ username, email, password });
   };
@@ -78,7 +70,6 @@ const Login = (props) => {
             </Grid>
             <Grid>
               <FormControl
-                error={!!formErrorMessage.confirmPassword}
                 margin="normal"
                 className={classes.formControl}
                 required
@@ -90,7 +81,6 @@ const Login = (props) => {
                   inputProps={{ minLength: 6 }}
                   name="password"
                 />
-                <FormHelperText>{formErrorMessage.confirmPassword}</FormHelperText>
               </FormControl>
             </Grid>
             <Button
