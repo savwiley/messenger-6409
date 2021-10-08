@@ -59,7 +59,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   topButton: {
     boxShadow: "0 0 8px rgba(0,0,0,0.2)",
-    color: "#3A8DFF",
+    color: theme.palette.primary.main,
     width: 150,
     height: 50,
   },
@@ -78,7 +78,7 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: "5%"
   },
   adornment: {
-    color: "#3A8DFF",
+    color: theme.palette.primary.main,
   },
   bottomButton: {
     display: "block",
@@ -88,7 +88,7 @@ export const useStyles = makeStyles((theme) => ({
     width: 150,
     height: 55,
     '&:hover': {
-      background: "#6abaff",
+      background: theme.palette.primary.light,
     }
   }
 }));
