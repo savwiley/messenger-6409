@@ -38,10 +38,11 @@ const Input = (props) => {
   
   const imageWidget = window.cloudinary.createUploadWidget({
     cloudName: 'savwileycloud', 
-    uploadPreset: 'my_preset',
+    uploadPreset: 'hatchwaysPreset',
   }, (error, result) => { 
     if (!error && result && result.event === "success") { 
       console.log('Done! Here is the image info: ', result.info); 
+      setImages(images => [...images, result.info.url]);
     }
   });
 
