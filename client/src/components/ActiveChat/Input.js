@@ -5,16 +5,20 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     justifySelf: "flex-end",
-    marginTop: 15
+    marginTop: 15,
+    color: theme.palette.primary.light,
+    fontSize: 12,
+    fontStyle: "italic"
   },
   input: {
     height: 70,
     backgroundColor: "#F4F6FA",
     borderRadius: 8,
-    marginBottom: 20
+    marginBottom: 20,
+    fontStyle: "normal"
   },
   icon: {
     color: "#b4c2de",
@@ -54,7 +58,7 @@ const Input = (props) => {
       recipientId: otherUser.id,
       conversationId,
       sender: conversationId ? null : user,
-      attachments: images.length > 0 ? images : null,
+      attachments: images,
     };
     await postMessage(reqBody);
     setText("");
@@ -62,9 +66,9 @@ const Input = (props) => {
   };
 
   return (
-    <>
     <form className={classes.root} onSubmit={handleSubmit}>
       <FormControl fullWidth hiddenLabel>
+        {images.length > 0 && "image(s) ready to send"}
         <FilledInput
           classes={{ root: classes.input }}
           disableUnderline
@@ -78,7 +82,6 @@ const Input = (props) => {
         />
       </FormControl>
     </form>
-    </>
   );
 };
 
