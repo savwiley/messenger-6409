@@ -51,10 +51,10 @@ const Login = (props) => {
             <Grid>
               <FormControl margin="normal" className={classes.formControl} required>
                 <TextField
-                  aria-label="e-mail address"
-                  label="E-mail address"
-                  name="email"
-                  type="email"
+                  aria-label="username"
+                  label="Username"
+                  name="username"
+                  type="username"
                 />
               </FormControl>
             </Grid>
